@@ -1,4 +1,4 @@
-# E-Commerce Laravel Web Application
+# E-Commerce Web Application
 
 A full-stack, responsive E-Commerce web application built with **Laravel** and **Bootstrap**. It features a modern storefront with product browsing, real-time search, category and tag filtering, session-based shopping cart, coupon codes, checkout, order processing, and a full administrative control panel powered by Laravel Voyager.
 
