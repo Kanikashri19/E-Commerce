@@ -1,61 +1,172 @@
-# ecommerce-laravel-fullstack
+# E-Commerce Laravel Web Application
 
-There is no live website. To see it on your PC, clone this project, follow the **Installation Guide** below, then run:
+A full-stack, responsive E-Commerce web application built with **Laravel** and **Bootstrap**. It features a modern storefront with product browsing, real-time search, category and tag filtering, session-based shopping cart, coupon codes, checkout, order processing, and a full administrative control panel powered by Laravel Voyager.
 
+---
+
+## Features
+
+- **Storefront & Catalog**:
+  - Featured products showcase and "Hot Sales" section.
+  - Category, tag, and price filtering for intuitive product discovery.
+  - Detailed single-product view with pricing and image galleries.
+- **Search System**:
+  - Live search functionality with keyword querying across products.
+- **Shopping Cart**:
+  - Robust session-based shopping cart allowing add, update quantity, and remove operations with dynamic subtotal and tax calculation.
+- **Checkout & Orders**:
+  - Checkout flow with coupon discount code support.
+  - Automated order creation and order confirmation email notifications.
+- **Admin Panel (Laravel Voyager)**:
+  - Dedicated admin dashboard at `/admin` for site administration.
+  - Complete BREAD (CRUD) operations for Products, Categories, Orders, Tags, and Users.
+  - Analytics and visitor tracking.
+- **User Authentication**:
+  - Built-in user authentication (Registration, Login, Password Reset, and Role-Based Access Control).
+
+---
+
+## Prerequisites
+
+Ensure you have the following installed on your machine:
+
+- **PHP** >= 8.0 (with required extensions: `openssl`, `pdo`, `mbstring`, `tokenizer`, `xml`, `ctype`, `json`, `sqlite3` or `pdo_mysql`)
+- **Composer** (PHP dependency manager)
+- **Node.js** (v14+ recommended) & **NPM**
+- **Database**: MySQL / MariaDB **or** SQLite
+
+---
+
+## Step-by-Step Installation Guide
+
+Follow these steps to set up and run the project locally on your PC:
+
+### 1. Clone the Repository
+Open your terminal (PowerShell, Command Prompt, or Bash) and clone the repository:
+```bash
+git clone https://github.com/Kanikashri19/E-Commerce.git
+cd E-Commerce
+```
+
+### 2. Install PHP Dependencies
+Install backend dependencies via Composer:
+```bash
+composer install
+```
+
+### 3. Install Frontend Dependencies & Build Assets
+Install npm packages and compile CSS/JS assets:
+```bash
+npm install
+npm run dev
+```
+
+### 4. Configure Environment Variables
+Copy the example environment configuration file:
+
+- **Windows (Command Prompt / PowerShell):**
+  ```powershell
+  copy .env.example .env
+  ```
+- **macOS / Linux:**
+  ```bash
+  cp .env.example .env
+  ```
+
+#### Database Configuration (Choose one option):
+
+- **Option A: SQLite (Quickest & easiest, no database server required)**
+  1. Create an empty SQLite database file inside the `database` folder:
+     - Windows PowerShell:
+       ```powershell
+       New-Item -ItemType File -Path "database/database.sqlite" -Force
+       ```
+     - Linux/macOS:
+       ```bash
+       touch database/database.sqlite
+       ```
+  2. Open your `.env` file and set:
+     ```env
+     DB_CONNECTION=sqlite
+     ```
+     *(Comment out or leave blank `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`)*
+
+- **Option B: MySQL / MariaDB**
+  1. Create a new database in MySQL (e.g. named `ecommerce`):
+     ```sql
+     CREATE DATABASE ecommerce;
+     ```
+  2. Open `.env` and set your database credentials:
+     ```env
+     DB_CONNECTION=mysql
+     DB_HOST=127.0.0.1
+     DB_PORT=3306
+     DB_DATABASE=ecommerce
+     DB_USERNAME=root
+     DB_PASSWORD=your_password
+     ```
+
+### 5. Generate Application Key
+Generate the unique application encryption key:
+```bash
+php artisan key:generate
+```
+
+### 6. Run Database Migrations & Seed Dummy Data
+Run the custom automated installer to create tables, seed sample products, categories, tags, demo orders, and set up storage symlinks:
+```bash
+php artisan ecommerce:install
+```
+> When prompted for confirmation, type `yes` to proceed.
+
+### 7. Start the Local Development Server
+Start the local Laravel development server:
 ```bash
 php artisan serve
 ```
 
-Open your browser and go to **http://127.0.0.1:8000/**
+---
 
-You need PHP, Composer, Node.js, and a database (MySQL/MariaDB) installed on your computer. Admin login: `admin@admin.com` / `password` at **http://127.0.0.1:8000/admin**
+## Accessing the Application
 
-## Features
+Once the server is running, open your web browser and navigate to:
 
--   Fully functional E-commerce website front-end and back-end built from scratch.
--   Using laravel voyager as an admin panel for the site.
--   javascript, jquery, bootstrap and css for the front-end.
--   Intelligent searching mechanism for products.
--   Awesome Cart package that uses session.
--   An artisan command to seed the database with all neccessary dummy data, even for voyager tables (php artisan ecommerce:install).
--   Different user roles and privileges.
--   Categories, tags and price filtering for easier search for products.
--   And much more features.
+- **Storefront**: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+- **Admin Panel**: [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
+
+### Default Admin Credentials
+- **Email:** `admin@admin.com`
+- **Password:** `password`
 
 ---
 
-## Installation Guide
+## Useful Artisan Commands
 
-1. clone this repo to your local machine: `git clone https://github.com/Kanikashri19/E-Commerce.git && cd E-Commerce`
-1. copy `.example.env` to `.env` file: `cp .example.env .env`
-1. create a new database and add the database credentials to your `.env` file
-1. run `composer install`
-1. run `npm install && npm run dev`
-1. run `php artisan key:generate`
-1. run `php artisan ecommerce:install`
-1. run `php artisan serve` and then visit `http://127.0.0.1:8000/`
-1. credentials to access admin panel (email: `admin@admin.com`, password: `password`)
-1. after you login as admin, you can access the admin page from `http://127.0.0.1:8000/admin`
--   Home Page
+- Clear compiled views cache:
+  ```bash
+  php artisan view:clear
+  ```
+- Clear application cache:
+  ```bash
+  php artisan cache:clear
+  ```
+- Recompile frontend assets in watch mode during development:
+  ```bash
+  npm run watch
+  ```
 
-![Screenshot (35)](https://user-images.githubusercontent.com/39973541/68545143-e8aeb280-03d2-11ea-8bb1-1c245150e432.png)
+---
 
--   Shopping Page
+## Author & Contact
 
-![Screenshot (36)](https://user-images.githubusercontent.com/39973541/68545195-5bb82900-03d3-11ea-801f-40d1f8c3334a.png)
+- **Name:** Kanika Shrivastava
+- **Phone:** +91 7224001779
+- **Email:** [kanishri.19@gmail.com](mailto:kanishri.19@gmail.com)
+- **GitHub:** [@Kanikashri19](https://github.com/Kanikashri19)
+- **LinkedIn:** [Kanika Shrivastava](https://www.linkedin.com/in/kanika-shrivastava-34405828b/)
 
--   Cart Page
+---
 
-![Screenshot (37)](https://user-images.githubusercontent.com/39973541/68545206-82765f80-03d3-11ea-8c5d-95ce0fc68e83.png)
+## License
 
--   Checkout page
-
-![Screenshot (38)](https://user-images.githubusercontent.com/39973541/68545217-9a4de380-03d3-11ea-8a97-18057d9ea3f2.png)
-
--   Admin Orders BREAD
-
-![Screenshot (33)](https://user-images.githubusercontent.com/39973541/68546326-ab035700-03dd-11ea-860c-7912775e2359.png)
-
--   Admin Products BREAD
-
-![Screenshot (34)](https://user-images.githubusercontent.com/39973541/68546338-d4bc7e00-03dd-11ea-9934-4c7329435f8a.png)
+This project is open-source and available under the [MIT License](LICENSE).
